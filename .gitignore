@@ -1,0 +1,17 @@
+# Operating System and Editor Artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw Source Materials and Assignment Prompts (Exclude from public repository)
+linkedin.md
+Project1Desc.txt
+Project2Desc.txt
+Project3Desc.txt
+Project_1_Page_1.png
+Project_1_Page_2.png
+Project_1_Page_3.png
+Project_2
+Project_3.jpg
+*.tmp
