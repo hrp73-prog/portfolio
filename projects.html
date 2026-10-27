@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore technical engineering projects by Harsh Patel: Revit BIM residential architecture, Arduino embedded calculator, and mechanical CAD assembly drafting.">
+  <title>Engineering Projects | Harsh Patel - Civil Engineering Portfolio</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global Header & Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="./index.html" class="brand-logo" aria-label="Harsh Patel Home">
+        <span class="brand-name">Harsh Patel</span>
+        <span class="brand-title">Civil Engineering &amp; Technology</span>
+      </a>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Toggle theme">
+          <svg class="theme-icon sun-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon moon-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="./projects.html" class="nav-link active" aria-current="page">Projects</a></li>
+          <li class="nav-item"><a href="./skills.html" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content">
+    <!-- Page Header Banner -->
+    <section class="page-header-banner" aria-labelledby="page-title">
+      <div class="container">
+        <p class="banner-eyebrow">Portfolio Showcase &bull; 3 Featured Projects</p>
+        <h1 id="page-title" class="banner-title">Engineering Projects &amp; Design Portfolio</h1>
+        <p class="banner-subtitle">A curated collection of architectural BIM modeling, embedded systems engineering, and mechanical CAD assembly drafting.</p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-main-section" aria-labelledby="portfolio-heading">
+      <div class="container">
+        <div class="projects-toolbar">
+          <h2 id="portfolio-heading" class="sr-only">Project Gallery and Filter Controls</h2>
+          
+          <!-- Category Filter Buttons -->
+          <div class="filter-controls" role="group" aria-label="Filter projects by discipline">
+            <span class="filter-label" id="filter-by-label">Filter Discipline:</span>
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Projects (3)</button>
+            <button type="button" class="filter-btn" data-filter="civil" aria-pressed="false">Civil &amp; BIM Architecture</button>
+            <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false">Embedded Hardware &amp; C++</button>
+            <button type="button" class="filter-btn" data-filter="mechanical" aria-pressed="false">Mechanical CAD &amp; Drafting</button>
+          </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-grid">
+          
+          <!-- Project 1: Revit Architecture -->
+          <article class="project-card" data-category="civil" id="project-1">
+            <div class="project-media">
+              <picture>
+                <source srcset="./images/project-1.jpg" type="image/jpeg">
+                <img src="./images/project-1.svg" alt="Autodesk Revit two-story modern residential home architectural 3D rendering and cover sheet" class="project-img" loading="lazy" width="600" height="400">
+              </picture>
+              <div class="project-badge">CET 317 Final Project</div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-discipline">BIM &amp; Architectural Engineering</span>
+                <span class="project-year">Autodesk Revit</span>
+              </div>
+              <h3 class="project-title">Two-Story Modern Residential Home: Architecture &amp; BIM Modeling</h3>
+              <p class="project-description">
+                Showcases the end-to-end architectural planning and modeling of a modern, two-story residential house. Utilizing Autodesk Revit software, the project progressed from schematic design to fully rendered 3D exterior visualizations, complete with a brick facade, integrated garage, and custom outdoor landscaping featuring a swimming pool. The documentation includes comprehensive elevation views and cross-sections that accurately map spatial layouts, interior flow, and precise vertical elevations for the ground floor, second story, and roofline. To simulate a real-world development cycle, the design process incorporated zoning compliance reviews, energy-efficient material selection, and preliminary construction scheduling to ensure overall project feasibility.
+              </p>
+              <div class="project-tags" aria-label="Technologies used">
+                <span class="tag">Autodesk Revit</span>
+                <span class="tag">BIM Modeling</span>
+                <span class="tag">3D Visualization</span>
+                <span class="tag">Elevation Sections</span>
+                <span class="tag">Zoning Compliance</span>
+                <span class="tag">Construction Feasibility</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary open-modal-btn" data-project="project-1" aria-haspopup="dialog">
+                  Inspect Project &amp; Drawing Sheets
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Arduino Calculator -->
+          <article class="project-card" data-category="embedded" id="project-2">
+            <div class="project-media">
+              <picture>
+                <source srcset="./images/project-2.jpg" type="image/jpeg">
+                <img src="./images/project-2.svg" alt="Custom 3D-printed digital Arduino calculator with LCD display and 4x4 keypad" class="project-img" loading="lazy" width="600" height="400">
+              </picture>
+              <div class="project-badge">Embedded Systems</div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-discipline">Embedded Hardware &amp; C++</span>
+                <span class="project-year">Arduino &amp; 3D Printing</span>
+              </div>
+              <h3 class="project-title">Embedded Arduino Digital Calculator with 3D-Printed Enclosure</h3>
+              <p class="project-description">
+                This engineering project features a fully functional, four-operation digital calculator built from scratch using an Arduino. The system integrates a digital LCD display and a 4x4 membrane keypad, all secured within a custom-modeled, 3D-printed casing designed for durability and ease of use. The project required C++ programming to handle real-time input processing, floating-point arithmetic, and edge-case error handling such as division by zero. Beyond software logic, the build involved circuit design, wire routing, and custom physical interface mapping using modified keycaps to create a seamless bridge between raw electronic components and the final user-facing product.
+              </p>
+              <div class="project-tags" aria-label="Technologies used">
+                <span class="tag">Arduino</span>
+                <span class="tag">C++ Firmware</span>
+                <span class="tag">Microcontrollers</span>
+                <span class="tag">LCD Interface</span>
+                <span class="tag">Circuit Design</span>
+                <span class="tag">3D-Printed Casing</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary open-modal-btn" data-project="project-2" aria-haspopup="dialog">
+                  Inspect Hardware &amp; Logic
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Lego CAD Assembly -->
+          <article class="project-card" data-category="mechanical" id="project-3">
+            <div class="project-media">
+              <picture>
+                <source srcset="./images/project-3.jpg" type="image/jpeg">
+                <img src="./images/project-3.svg" alt="Technical mechanical assembly CAD blueprint of standardized Lego minifigure with Section A-A cross section" class="project-img" loading="lazy" width="600" height="400">
+              </picture>
+              <div class="project-badge">Mechanical CAD</div>
+            </div>
+            <div class="project-content">
+              <div class="project-meta-row">
+                <span class="project-discipline">Mechanical CAD &amp; Tolerancing</span>
+                <span class="project-year">Assembly Drafting</span>
+              </div>
+              <h3 class="project-title">Standardized Lego Minifigure Mechanical Assembly &amp; CAD Drafting</h3>
+              <p class="project-description">
+                This was done as final project of advanced computer-aided design (CAD) and mechanical drafting certification course through the reverse engineering and detailed assembly modeling of a standardized lego minifigure. The comprehensive technical schematic provides precise orthographic projections, an isometric overview, and a detailed cross-sectional analysis (Section A-A) to illustrate internal mating features and structural geometry. Rigorous dimensional tolerancing is documented, capturing key measurements such as an overall height of 40.01 units and an assembly width of 25.63 units to ensure accurate component interchangeability and a flush assembly fit. To emulate professional manufacturing workflows, this multi-sheet drafting project incorporated simulated tolerance stack-up analysis, material specifications for thermoplastic injection molding, and design-for-manufacturing (DFM) principles to optimize production yield and mechanical performance.
+              </p>
+              <div class="project-tags" aria-label="Technologies used">
+                <span class="tag">AutoCAD / Inventor</span>
+                <span class="tag">Assembly Drafting</span>
+                <span class="tag">Section A-A Cross-Section</span>
+                <span class="tag">Geometric Tolerancing</span>
+                <span class="tag">DFM Principles</span>
+                <span class="tag">Thermoplastic Injection</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn btn-primary open-modal-btn" data-project="project-3" aria-haspopup="dialog">
+                  View Engineering Blueprint
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Accessible Modal Dialog for Project Inspection -->
+    <dialog id="project-modal" class="project-modal" aria-labelledby="modal-project-title" aria-modal="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-project-title" class="modal-title">Project Details</h2>
+          <button id="close-modal-btn" class="modal-close" type="button" aria-label="Close project modal">&times;</button>
+        </div>
+        <div id="modal-body" class="modal-body">
+          <!-- Dynamically populated or updated via script.js -->
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <p class="footer-title">Harsh Patel</p>
+        <p class="footer-tagline">Civil &amp; Construction Engineering Technology &bull; NJIT</p>
+        <p class="footer-location">Parsippany &amp; Newark, New Jersey</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About Me</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./skills.html">Skills</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-social">
+        <p class="footer-social-label">Connect Online:</p>
+        <ul class="social-links">
+          <li>
+            <a href="https://www.linkedin.com/in/harsh-patel-372487246/" target="_blank" rel="noopener noreferrer" aria-label="Harsh Patel LinkedIn Profile (opens in new tab)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/hrp73-prog" target="_blank" rel="noopener noreferrer" aria-label="Harsh Patel GitHub Profile (opens in new tab)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:hrp73@njit.edu" aria-label="Email Harsh Patel directly">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Harsh Patel. All rights reserved. Built with semantic HTML5, CSS3, and ES6 JavaScript.</p>
+        <p><a href="#main-content" class="back-to-top">Back to top &uarr;</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>
