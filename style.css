@@ -966,3 +966,81 @@ a:hover {
   color: var(--text-muted);
   padding-top: 1.25rem;
 }
+
+/* --- 13. Responsive Media Queries --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .primary-nav {
+    display: none;
+    position: absolute;
+    top: 4.25rem;
+    left: 0;
+    width: 100%;
+    background-color: var(--surface-color);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem;
+  }
+
+  .primary-nav.active {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.65rem;
+  }
+
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .highlights-grid,
+  .preview-grid,
+  .certifications-grid,
+  .interests-grid,
+  .skills-grid,
+  .about-grid,
+  .contact-grid,
+  .footer-container,
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .course-list {
+    columns: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title, .banner-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-actions, .cta-buttons, .form-actions, .project-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
