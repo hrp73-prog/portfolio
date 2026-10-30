@@ -165,8 +165,126 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /* --------------------------------------------------------------------------
+     4. Contact Form Validation (With Defensive Guard)
+     -------------------------------------------------------------------------- */
+  const initContactForm = () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return; // Defensive guard: prevents null errors on non-contact pages!
+
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const subjectInput = document.getElementById('contact-subject');
+    const messageInput = document.getElementById('contact-message');
+    const statusBox = document.getElementById('form-status');
+
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const subjectError = document.getElementById('subject-error');
+    const messageError = document.getElementById('message-error');
+
+    // Simple email pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const clearErrors = () => {
+      [nameInput, emailInput, subjectInput, messageInput].forEach(inp => {
+        if (inp) {
+          inp.classList.remove('input-error');
+          inp.removeAttribute('aria-invalid');
+        }
+      });
+      [nameError, emailError, subjectError, messageError].forEach(span => {
+        if (span) span.textContent = '';
+      });
+      if (statusBox) {
+        statusBox.style.display = 'none';
+        statusBox.textContent = '';
+        statusBox.className = 'form-status';
+      }
+    };
+
+    // Clear inline error when typing
+    [nameInput, emailInput, subjectInput, messageInput].forEach(inp => {
+      if (!inp) return;
+      inp.addEventListener('input', () => {
+        inp.classList.remove('input-error');
+        inp.removeAttribute('aria-invalid');
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrors();
+      let hasError = false;
+
+      // Validate Name
+      if (!nameInput || nameInput.value.trim().length < 2) {
+        nameInput.classList.add('input-error');
+        nameInput.setAttribute('aria-invalid', 'true');
+        if (nameError) nameError.textContent = 'Please enter your name (at least 2 characters).';
+        hasError = true;
+      }
+
+      // Validate Email
+      if (!emailInput || !emailPattern.test(emailInput.value.trim())) {
+        emailInput.classList.add('input-error');
+        emailInput.setAttribute('aria-invalid', 'true');
+        if (emailError) emailError.textContent = 'Please enter a valid email address.';
+        hasError = true;
+      }
+
+      // Validate Subject
+      if (!subjectInput || subjectInput.value.trim().length < 3) {
+        subjectInput.classList.add('input-error');
+        subjectInput.setAttribute('aria-invalid', 'true');
+        if (subjectError) subjectError.textContent = 'Please enter a subject.';
+        hasError = true;
+      }
+
+      // Validate Message
+      if (!messageInput || messageInput.value.trim().length < 10) {
+        messageInput.classList.add('input-error');
+        messageInput.setAttribute('aria-invalid', 'true');
+        if (messageError) messageError.textContent = 'Please write a message of at least 10 characters.';
+        hasError = true;
+      }
+
+      if (hasError) {
+        if (statusBox) {
+          statusBox.className = 'form-status status-error';
+          statusBox.textContent = 'Please fill out all required fields correctly.';
+          statusBox.style.display = 'block';
+        }
+        const firstError = form.querySelector('.input-error');
+        if (firstError) firstError.focus();
+        return;
+      }
+
+      // Success flow
+      const name = nameInput.value.trim();
+      const subject = subjectInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (statusBox) {
+        statusBox.className = 'form-status status-success';
+        statusBox.textContent = `Thank you, ${name}! Launching your email client to send your message to hrp73@njit.edu...`;
+        statusBox.style.display = 'block';
+      }
+
+      const mailtoUrl = `mailto:hrp73@njit.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name}\n\n${message}`)}`;
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 500);
+
+      form.reset();
+    });
+
+    form.addEventListener('reset', clearErrors);
+  };
+
   // Run all feature initializers
   initThemeToggle();
   initMobileNav();
   initProjects();
+  initContactForm();
 });
