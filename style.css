@@ -101,16 +101,40 @@ a:hover {
   transition: top 0.2s ease;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: 1rem;
-  outline: 3px solid #ffffff;
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px var(--focus-ring);
 }
 
 /* Accessible Keyboard Focus Rings */
-:focus-visible {
+:focus {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 3px !important;
   border-radius: 4px;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="dark"] :focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.45) !important;
+}
+
+/* Remove outline on main when programmatically focused via skip-link */
+main:focus,
+main:focus-visible {
+  outline: none !important;
 }
 
 .sr-only {
@@ -726,9 +750,19 @@ a:hover {
   color: var(--text-muted);
 }
 
-.modal-body img {
+.modal-body img,
+.modal-preview-img {
+  width: 100%;
   border-radius: 6px;
   margin-bottom: 1rem;
+}
+
+.modal-footer {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* --- 10. Skills Meters --- */
@@ -755,10 +789,24 @@ a:hover {
 
 .meter-track {
   width: 100%;
-  height: 8px;
+  height: 10px;
   background-color: var(--surface-alt);
-  border-radius: 4px;
+  border-radius: 5px;
   overflow: hidden;
+  cursor: default;
+}
+
+.meter-track:focus,
+.meter-track:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .meter-track:focus,
+[data-theme="dark"] .meter-track:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35) !important;
 }
 
 .meter-fill {
@@ -788,6 +836,17 @@ a:hover {
   padding: 0.4rem 0.85rem;
   border-radius: 20px;
   font-size: 0.85rem;
+  cursor: default;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.badge-item:hover,
+.badge-item:focus,
+.badge-item:focus-visible {
+  border-color: var(--primary);
+  background-color: var(--surface-alt);
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
 }
 
 /* --- 11. Contact Form --- */
@@ -856,10 +915,19 @@ a:hover {
   border-radius: var(--radius);
 }
 
-.form-control:focus {
-  outline: none;
+.form-control:focus,
+.form-control:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 1px !important;
   border-color: var(--focus-ring);
-  box-shadow: 0 0 0 2px var(--primary-light);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-control:focus-visible {
+  outline: 3px solid var(--focus-ring) !important;
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35) !important;
 }
 
 .form-control.input-error {

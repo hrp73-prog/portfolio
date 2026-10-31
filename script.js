@@ -13,6 +13,23 @@ document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
   /* --------------------------------------------------------------------------
+     0. Skip Link Keyboard Focus Helper (WCAG Focus Management)
+     -------------------------------------------------------------------------- */
+  const initSkipLink = () => {
+    const skipLink = document.querySelector('.skip-link');
+    if (!skipLink) return;
+
+    skipLink.addEventListener('click', (e) => {
+      const target = document.getElementById('main-content');
+      if (target) {
+        e.preventDefault();
+        target.focus();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  };
+
+  /* --------------------------------------------------------------------------
      1. Theme Toggle (Light / Dark Mode)
      -------------------------------------------------------------------------- */
   const initThemeToggle = () => {
@@ -43,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* --------------------------------------------------------------------------
-     2. Responsive Mobile Navigation Menu
+     2. Responsive Mobile Navigation Menu (With Complete Keyboard Accessibility)
      -------------------------------------------------------------------------- */
   const initMobileNav = () => {
     const menuBtn = document.getElementById('menu-toggle');
@@ -54,11 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = open !== undefined ? open : menuBtn.getAttribute('aria-expanded') !== 'true';
       menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       navMenu.classList.toggle('active', isOpen);
+
+      if (isOpen) {
+        // Shift focus into first nav link for keyboard users
+        const firstLink = navMenu.querySelector('.nav-link');
+        if (firstLink) {
+          setTimeout(() => firstLink.focus(), 50);
+        }
+      }
     };
 
     menuBtn.addEventListener('click', () => toggleMenu());
 
-    // Close menu when pressing Escape key
+    // Close menu when pressing Escape key and return focus to menu button
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navMenu.classList.contains('active')) {
         toggleMenu(false);
@@ -78,18 +103,35 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMenu(false);
       }
     });
+
+    // Keyboard focus trap inside mobile drawer
+    navMenu.addEventListener('keydown', (e) => {
+      if (!navMenu.classList.contains('active') || e.key !== 'Tab') return;
+      const navLinks = Array.from(navMenu.querySelectorAll('.nav-link'));
+      if (!navLinks.length) return;
+      const first = navLinks[0];
+      const last = navLinks[navLinks.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        menuBtn.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        menuBtn.focus();
+      }
+    });
   };
 
   /* --------------------------------------------------------------------------
-     3. Project Filtering & Modal Preview
+     3. Project Filtering & Modal Preview (With Keyboard Arrows & Focus Trap)
      -------------------------------------------------------------------------- */
   const initProjects = () => {
-    // A. Filter buttons
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    // A. Filter buttons (with Arrow key keyboard navigation)
+    const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
     const projectCards = document.querySelectorAll('.project-card');
 
     if (filterBtns.length > 0 && projectCards.length > 0) {
-      filterBtns.forEach(btn => {
+      filterBtns.forEach((btn, index) => {
         btn.addEventListener('click', () => {
           const filter = btn.getAttribute('data-filter');
 
@@ -109,6 +151,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         });
+
+        // Arrow key navigation between filter buttons
+        btn.addEventListener('keydown', (e) => {
+          let nextIndex = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            nextIndex = (index + 1) % filterBtns.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            nextIndex = (index - 1 + filterBtns.length) % filterBtns.length;
+          } else if (e.key === 'Home') {
+            nextIndex = 0;
+          } else if (e.key === 'End') {
+            nextIndex = filterBtns.length - 1;
+          }
+
+          if (nextIndex !== null) {
+            e.preventDefault();
+            filterBtns[nextIndex].focus();
+            filterBtns[nextIndex].click();
+          }
+        });
       });
     }
 
@@ -123,6 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let triggerElement = null;
 
+    const closeModal = () => {
+      if (typeof modal.close === 'function') {
+        modal.close();
+      } else {
+        modal.removeAttribute('open');
+      }
+      if (triggerElement) {
+        triggerElement.focus();
+      }
+    };
+
     openBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         triggerElement = btn;
@@ -136,8 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modalTitle.textContent = title;
         modalBody.innerHTML = `
-          <img src="${img}" alt="${alt}" style="width:100%; border-radius:6px; margin-bottom:1rem;">
+          <img src="${img}" alt="${alt}" class="modal-preview-img">
           <p>${desc}</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary modal-done-btn">Close Preview</button>
+          </div>
         `;
 
         if (typeof modal.showModal === 'function') {
@@ -145,23 +221,49 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           modal.setAttribute('open', '');
         }
+
+        const doneBtn = modalBody.querySelector('.modal-done-btn');
+        if (doneBtn) {
+          doneBtn.addEventListener('click', closeModal);
+        }
+
         closeBtn.focus();
       });
     });
-
-    const closeModal = () => {
-      if (typeof modal.close === 'function') {
-        modal.close();
-      } else {
-        modal.removeAttribute('open');
-      }
-      if (triggerElement) triggerElement.focus();
-    };
 
     closeBtn.addEventListener('click', closeModal);
 
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
+    });
+
+    // Ensure focus is restored to trigger button when modal is closed
+    modal.addEventListener('close', () => {
+      if (triggerElement) {
+        triggerElement.focus();
+      }
+    });
+
+    modal.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      closeModal();
+    });
+
+    // Trap focus inside modal for keyboard navigation
+    modal.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   };
 
@@ -283,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Run all feature initializers
+  initSkipLink();
   initThemeToggle();
   initMobileNav();
   initProjects();
