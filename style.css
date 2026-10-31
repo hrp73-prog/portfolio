@@ -1044,3 +1044,11 @@ a:hover {
     text-align: center;
   }
 }
+
+/* User reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
